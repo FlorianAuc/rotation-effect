@@ -3,6 +3,7 @@
 
 const sections = document.querySelectorAll(".section");
 let activeIndex = 0;
+let previousPitch = null;
 
 window.addEventListener("deviceorientation", (e) => {
   e.preventDefault();
@@ -10,7 +11,10 @@ window.addEventListener("deviceorientation", (e) => {
   const pitch = e.beta;
   // console.log(activeIndex);
 
-  if (Math.abs(pitch - 40) < 5 || Math.abs(pitch - 160) < 5) {
+  if (
+    (previousPitch === null || Math.abs(pitch - previousPitch) >= 5) &&
+    ((pitch >= 38 && pitch <= 42) || (pitch >= 158 && pitch <= 162))
+  ) {
     sections.forEach((section) => {
       section.classList.remove("active");
     });
