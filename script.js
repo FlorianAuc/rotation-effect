@@ -10,7 +10,7 @@ window.addEventListener("deviceorientation", (e) => {
   const pitch = e.beta;
   // console.log(activeIndex);
 
-  if (pitch === 40 || pitch === 160) {
+  if (Math.abs(pitch - 40) < 5 || Math.abs(pitch - 160) < 5) {
     sections.forEach((section) => {
       section.classList.remove("active");
     });
